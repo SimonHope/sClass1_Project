@@ -1,0 +1,105 @@
+/* Table Of Content */
+/* 191c24-4f7cac-c0e0de-9eefe5-417b5a */
+
+/*
+1. Section Setting
+2. Section Carousel
+3. Section Blog
+4. Section Footer
+*/
+
+/* Section Setting */
+
+html, body{
+    height: 100%;
+}
+
+.bg-customcolor{
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.border-short-bottom{
+    position: relative;
+    padding: 20px 0px;
+    margin-bottom: 25px;
+}
+
+.border-short-bottom::after{
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 2px;
+    bottom: 0px;
+    left: 50%;
+    margin-left: -50px;
+    background: #595959;
+}
+
+/* Section Carousel */
+
+.carousel,
+.carousel-inner,
+.carousel-item,
+.carousel-inner .active{
+    height: 100%;
+}
+
+.corousel-img{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-caption{
+    top: 40%;
+}
+
+.backscreen{
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+
+/* Section Blog */
+
+.warpper-card-img{
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+}
+
+.warpper-card-img img{
+    position: absolute;
+    top: 0%;
+    transition: 0.5s;
+}
+
+.warpper-card-img img:hover{
+    transform: scale(1.2);
+}
+
+/* Section Footer */
+
+.semi-footer{
+    background-color: #191c24;
+    color: snow;
+}
+
+.semi-footer a{
+    color: snow;
+}
+
+.semi-footer h4{
+    color: #9eefe5;
+    border-bottom: 1px solid;
+    padding: 10px 0;
+}
+
+.footer{
+    background: #000;
+    color: snow;
+    font-size: 0.7rem;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+}
