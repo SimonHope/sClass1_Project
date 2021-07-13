@@ -12,8 +12,10 @@ Colors
 */
 
 /* Section Setting */
+    @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
     html, body{
         height: 100%;
+        font-family: 'Prompt', sans-serif;
     }
 
     .bg-customcolor{
@@ -108,4 +110,13 @@ Colors
     #navbar{
         padding: 25px;
         transition: 0.5s;
+    }
+
+/* Section Page-title */
+    .page-title{
+        position: relative;
+        display: block;
+        padding-top: 250px;
+        padding-bottom: 100px;
+        color: snow;
     }
