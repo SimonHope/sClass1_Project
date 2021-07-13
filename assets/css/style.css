@@ -103,3 +103,9 @@ Colors
         line-height: 90px;
         text-align: center;
     }
+
+/* Section Navbar */
+    #navbar{
+        padding: 25px;
+        transition: 0.5s;
+    }
