@@ -5,6 +5,10 @@
 2. Section Carousel
 3. Section Blog
 4. Section Footer
+5. Section Navbar
+6. Section Page-title
+7. Section Timeline
+8. Section Star
 __________________________________
 
 Colors
@@ -106,6 +110,15 @@ Colors
         text-align: center;
     }
 
+    .navbar-brand-fix{
+        display: inline-block;
+        padding-top: .3125rem;
+        padding-bottom: .3125rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
 /* Section Navbar */
     #navbar{
         padding: 25px;
@@ -119,4 +132,144 @@ Colors
         padding-top: 250px;
         padding-bottom: 100px;
         color: snow;
+    }
+
+/* Section Timeline */
+    .timeline{
+        list-style: none;
+        position: relative;
+        padding: 20px 0;
+    }
+
+    .timeline > li{
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+    .timeline::before{
+        position: absolute;
+        content: " ";
+        width: 2px;
+        background: #e6e6e6;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -1px;
+    }
+
+    li > .timeline-badge{
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border: 3px solid #84ba3f;
+        left: 50%;
+        margin-left: -9px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 0 5px #fff;
+        top: 15px;
+    }
+
+    li > .timeline-badge::before{
+        content: " ";
+        position: absolute;
+        top: 5px;
+        right: 20px;
+        width: 25px;
+        height: 2px;
+        background: #e6e6e6;
+    }
+
+    li.inverted > .timeline-badge::before{
+        right: -32px;
+    }
+
+    li > .timeline-badge p{
+        width: 200px;
+        margin-top: -9px;
+        margin-left: 25px;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    li.inverted > .timeline-badge p{
+        float: right;
+        text-align: right;
+        margin-right: 25px;
+    }
+
+    li > .timeline-card{
+        position: relative;
+        width: 46%;
+        float: left;
+        text-align: right;
+        padding: 0 10px;
+    }
+
+    li.inverted > .timeline-card{
+        float: right;
+        text-align: left;
+    }
+
+    .timeline > li::after{
+        content: " ";
+        clear: both;
+        display: block;
+    }
+
+    .timeline-arrow{
+        width: 100%;
+        text-align: center;
+        bottom: -70px;
+        color:#e6e6e6;
+    }
+
+    @media (max-width: 768px ){
+        .timeline::before,
+        .timeline-badge{
+            left: 40px !important;
+        }
+
+        .timeline-badge::before{
+            right: -32px !important;
+        }
+
+        .timeline-badge p,
+        li.inverted > .timeline-badge p{
+            margin-left: 50px !important;
+            text-align: left;
+            float: left;
+        }
+
+        li > .timeline-card{
+            width: 100%;
+            text-align: left;
+            padding: 37px 0 0 85px;
+        }
+
+        .timeline-arrow{
+            text-align: left;
+            left: 0;
+        }
+
+        .timeline-arrow > i{
+            margin-left: 32px;
+        }
+
+    }
+
+/* Section Star */
+/* ☆★ */
+    .star-rating{
+        position: relative;
+        font-size: 2em;
+        color: gold;
+        display: inline-block;
+    }
+
+    .star-current{
+        position: absolute;
+        top: 0;
+        white-space: nowrap;
+        overflow: hidden;
     }
