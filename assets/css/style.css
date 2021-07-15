@@ -85,6 +85,11 @@ Colors
         transform: scale(1.2);
     }
 
+    .btn-group-custom button{
+        margin-bottom: 0.5rem;
+        width: 150px;
+    }
+
 /* Section Footer */
     .semi-footer{
         background-color: #191c24;
