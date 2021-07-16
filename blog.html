@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>About</title>
+    <title>Blog</title>
 </head>
 <body>
     
@@ -58,8 +58,12 @@
             <div class="row pb-4">
                 <div class="col-12 text-center">
                     <div class="btn-group-custom">
-                        <button class="btn btn-primary">ทั้งหมด</button>
-                        <button class="btn btn-primary">FPS</button>
+                        <a href="blog.html?tag=all">
+                            <button class="btn btn-primary active">ทั้งหมด</button>
+                        </a>
+                        <a href="blog.html?tag=FPS">
+                            <button class="btn btn-primary">FPS</button>
+                        </a>
                         <button class="btn btn-primary">MMORPG</button>
                         <button class="btn btn-primary">Platform</button>
                         <button class="btn btn-primary">MOBA</button>
@@ -71,15 +75,15 @@
             <div class="row">
                 <section class="col-12 col-sm-6 col-md-4 p-2">
                     <div class="card h-100">
-                        <a href="#" class="warpper-card-img">
-                            <img src="assets/image/blog/img1.jfif" class="card-img-top" alt="...">
+                        <a href="blog-detail.html?id=001" class="warpper-card-img">
+                            <img src="https://images.unsplash.com/photo-1598550511769-875ef2a01663?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">เกมแนว FPS คืออะไร</h5>
+                            <p class="card-text">FPS&nbsp;ย่อมาจาก&nbsp;First-person shooter</p>
                         </div>
                         <div class="p-3">
-                            <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
+                            <a href="blog-detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
                         </div>
                     </div>
                 </section>
