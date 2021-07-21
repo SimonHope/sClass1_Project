@@ -45,7 +45,7 @@
 
     <!-- Section Page-title -->
         <header class="jarallax" data-jarallax='{ "speed": 0.6 }' style="background-image: url('https://images.unsplash.com/photo-1598550511769-875ef2a01663?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
-            <div class="blog-image">
+            <div class="page-image">
                 <h1 class="display-4 font-weight-bold">เกมแนว FPS คืออะไร</h1>
                 <p class="lead">"FPS&nbsp;ย่อมาจาก&nbsp;First-person shooter"</p>
             </div>
@@ -212,7 +212,7 @@
         <footer class="semi-footer p-5 text-center text-md-left">
             <div class="row">
                 <div class="col-md-4">
-                    <a class="navbar-brand-fix" href="https://www.facebook.com/nutthapoom.lmk" target="_blank">
+                    <a class="navbar-brand" href="https://www.facebook.com/nutthapoom.lmk" target="_blank">
                         <img src="assets/image/logo.png" width="35" height="35" class="d-inline-block align-top" alt="">
                         SimonHope Studio
                     </a>
@@ -259,11 +259,36 @@
             All Right Reserved
         </footer>
 
+    <!-- Section On to Top -->
+        <div class="to-top">
+            <i class="fas fa-angle-up"></i>
+        </div>
+
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/jarallax/dist/jarallax.min.js"></script>
     <script src="node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                nav:false,
+                dot: true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:3
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

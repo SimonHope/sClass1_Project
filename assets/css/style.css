@@ -9,6 +9,7 @@
 6. Section Page-title
 7. Section Timeline
 8. Section Star
+9. Section On to Top
 __________________________________
 
 Colors
@@ -90,16 +91,14 @@ Colors
         width: 150px;
     }
 
-    .blog-image{
-        padding: 200px 0px 120px;
-        text-align: center;
-        color: snow;
-        background: rgba(0, 0, 0, 0.5);
-    }
-
     .blog-content{
         padding: 50px 100px;
         box-shadow: 0px 0px 10px #a5a5a5;
+    }
+
+    .owl-carousel .card-body{
+        height: 160px;
+        overflow: hidden;
     }
 
     @media (max-width: 991px ){
@@ -139,14 +138,6 @@ Colors
         text-align: center;
     }
 
-    .navbar-brand-fix{
-        display: inline-block;
-        padding-top: .3125rem;
-        padding-bottom: .3125rem;
-        font-size: 1.25rem;
-        line-height: inherit;
-        white-space: nowrap;
-    }
 
 /* Section Navbar */
     #navbar{
@@ -154,13 +145,19 @@ Colors
         transition: 0.5s;
     }
 
+    @media (max-width: 480px){
+        .navbar-brand{
+            font-size: 0.8rem;
+            line-height: 1.5rem;
+        }
+    }
+
 /* Section Page-title */
-    .page-title{
-        position: relative;
-        display: block;
-        padding-top: 250px;
-        padding-bottom: 100px;
+    .page-image{
+        padding: 200px 0px 120px;
+        text-align: center;
         color: snow;
+        background: rgba(0, 0, 0, 0.5);
     }
 
 /* Section Timeline */
@@ -301,4 +298,28 @@ Colors
         top: 0;
         white-space: nowrap;
         overflow: hidden;
+    }
+
+/* Section On to Top */
+    .to-top{
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
+        width: 40px;
+        height: 40px;
+        background: #4f7cac;
+        color: #fff;
+        z-index: 9999;
+        border-radius: 50%;
+        font-size: 25px;
+        cursor: pointer;
+        text-align: center;
+        padding-top: 3px;
+        transition: 0.5s;
+    }
+
+    .to-top:hover{
+        color: #191c24;
+        transition: 0.5s;
+        background: #3b6899;
     }
