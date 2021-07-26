@@ -24,8 +24,8 @@
     <meta name="og:title" content="SimonHope ส่งต่อเรื่องราวของเกม">
     <meta name="og:description" content="อยากให้ทุกคนเข้าใจในเกมและเล่นเกมอย่างมีความสุข">
     <meta name="og:image" content="https://images.unsplash.com/10/wii.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80">
-    <meta name="og:url" content="https://sclass1-project.web.app/blog.html">
-    <meta name="og:site_name" content="https://sclass1-project.web.app/blog.html">
+    <meta name="og:url" content="https://sclass1-project.web.app/blog.php">
+    <meta name="og:site_name" content="https://sclass1-project.web.app/blog.php">
     <meta name="og:type" content="website">
 
 <!-- Favicons -->
@@ -48,34 +48,7 @@
 <body>
     
     <!-- Se ction Navbar -->
-        <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark bg-customcolor">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/images/logo.png" width="35" height="35" class="d-inline-block align-top" alt="">
-                    SimonHope Studio
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarKey" aria-controls="navbarKey" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            
-                <div class="collapse navbar-collapse" id="navbarKey">
-                    <ul class="navbar-nav ml-auto text-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="blog.html">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <?php include_once('includes/navbar.php') ?>
 
     <!-- Section Page-title -->
         <header class="jarallax" data-jarallax='{ "speed": 0.6 }' style="background-image: url('https://images.unsplash.com/photo-1498736297812-3a08021f206f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
@@ -90,10 +63,10 @@
             <div class="row pb-4">
                 <div class="col-12 text-center">
                     <div class="btn-group-custom">
-                        <a href="blog.html?tag=all">
+                        <a href="blog.php?tag=all">
                             <button class="btn btn-primary active">ทั้งหมด</button>
                         </a>
-                        <a href="blog.html?tag=FPS">
+                        <a href="blog.php?tag=FPS">
                             <button class="btn btn-primary">FPS</button>
                         </a>
                         <button class="btn btn-primary">MMORPG</button>
@@ -107,7 +80,7 @@
             <div class="row">
                 <section class="col-12 col-sm-6 col-md-4 p-2">
                     <div class="card h-100">
-                        <a href="blog-detail.html?id=001" class="warpper-card-img">
+                        <a href="blog-detail.php?id=001" class="warpper-card-img">
                             <img src="https://images.unsplash.com/photo-1598550511769-875ef2a01663?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
@@ -115,7 +88,7 @@
                             <p class="card-text">FPS&nbsp;ย่อมาจาก&nbsp;First-person shooter</p>
                         </div>
                         <div class="p-3">
-                            <a href="blog-detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
+                            <a href="blog-detail.php" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
                         </div>
                     </div>
                 </section>
@@ -249,16 +222,16 @@
                     <h4>เมนู</h4>
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="about.php">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="blog.html">Blog</a>
+                            <a class="nav-link" href="blog.php">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="contact.php">Contact</a>
                         </li>
                     </ul>
                 </div>
