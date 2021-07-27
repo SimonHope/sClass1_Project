@@ -4,9 +4,7 @@
 
     $sql = "SELECT * FROM articles";
     $result = $conn->query($sql) or die($conn->error);
-
-    print_r($result);
-
+    
 ?>
 
 <!DOCTYPE html>
