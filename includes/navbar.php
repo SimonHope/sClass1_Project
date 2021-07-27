@@ -18,7 +18,7 @@
                 <li class="nav-item <?php echo $file_name == 'about' ? 'active' : '' ?>">
                     <a class="nav-link" href="about.php">About</a>
                 </li>
-                <li class="nav-item <?php echo $file_name == 'blog' || 'blog-detail' ? 'active' : '' ?>">
+                <li class="nav-item <?php echo $file_name == 'blog' || $file_name == 'blog-detail' ? 'active' : '' ?>">
                     <a class="nav-link" href="blog.php">Blog</a>
                 </li>
                 <li class="nav-item <?php echo $file_name == 'contact' ? 'active' : '' ?>">

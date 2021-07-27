@@ -200,55 +200,7 @@
         </section>
 
     <!-- Section Footer -->
-        <footer class="semi-footer p-5 text-center text-md-left">
-            <div class="row">
-                <div class="col-md-4">
-                    <a class="navbar-brand" href="https://www.facebook.com/nutthapoom.lmk" target="_blank">
-                        <img src="assets/images/logo.png" width="35" height="35" class="d-inline-block align-top" alt="">
-                        SimonHope Studio
-                    </a>
-                    <p>
-                        <i class="fas fa-phone-square-alt"></i> 085-729-5454
-                        <br>
-                        <i class="fas fa-envelope"></i> email@example.com
-                        <br>
-                        <i class="fas fa-address-card"></i> Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    </p>
-                    <a href="https://www.facebook.com/nutthapoom.lmk" target="_blank">
-                        <i class="fab fa-facebook-square fa-2x"></i>
-                    </a>
-                    <a href="https://www.youtube.com/channel/UC9r5CdyjvSMYgiuMHnSRwBQ" target="_blank">
-                        <i class="fab fa-youtube-square fa-2x"></i>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <h4>เมนู</h4>
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.php">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.php">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.php">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>แผนที่</h4>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3875.511552031784!2d100.5120747!3d13.747996!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2993c9d2f3f75%3A0xac2bd6b821263494!2z4Lia4Lij4Li04Lip4Lix4LiXIOC5geC4reC4quC5guC4geC5ieC4i-C4seC4nuC4nuC4peC4suC4oiDguIjguLPguIHguLHguJQ!5e0!3m2!1sth!2sth!4v1626081159816!5m2!1sth!2sth" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </footer>
-
-        <footer class="footer">
-            <span> COPYRIGHT © 2020 <a href="https://www.facebook.com/nutthapoom.lmk" target="_blank">SimonHope Studio</a> </span>
-            All Right Reserved
-        </footer>
+        <?php include_once('includes/footer.php') ?>
 
     <!-- Section On to Top -->
         <div class="to-top">
@@ -258,6 +210,7 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/jarallax/dist/jarallax.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
