@@ -12,6 +12,7 @@
         echo "Connect Error : ".$conn->connect_error; //แสดงผล error message
         exit(); //จบการทำงานทุกอย่าง (โปรแกรมจะปิดตัวลง)
     }
+    $base_path_blog = 'assets/images/blog/';
     //ถ้าไม่มี error ให้ปล่อยผ่านไม่ต้องแสดงอะไร
     
     /*

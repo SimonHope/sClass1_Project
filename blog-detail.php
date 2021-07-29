@@ -1,15 +1,16 @@
 <?php
     require_once('php/connect.php');
-
     $sql = "SELECT * FROM articles WHERE id = '".$_GET['id']."'";
     $result = $conn->query($sql) or die ($conn->error);
-
     if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+        $row = $result->fetch_assoc() or die($conn->error);
     }
     else {
         header('Location: blog.php');
     }
+
+    $sql_RAND = "SELECT * FROM `articles` WHERE `status` = 'true' ORDER BY RAND() LIMIT 6";
+    $result_RAND = $conn->query($sql_RAND) or die($conn->error);
 
 ?>
 
@@ -67,7 +68,7 @@
         <?php include_once('includes/navbar.php') ?>
 
     <!-- Section Page-title -->
-        <header class="jarallax " data-speed="0.5" style="background-image: url('<?php echo $row['image']; ?>');">
+        <header class="jarallax " data-speed="0.5" style="background-image: url('<?php echo $base_path_blog.$row['image']; ?>');">
             <div class="page-image">
                 <h1 class="display-4 font-weight-bold"><?php echo $row['subject']; ?></h1>
                 <p class="lead container"><?php echo $row['sub_title'] ?></p>
@@ -87,80 +88,22 @@
                 </div>
                 <div class="col-12">
                     <div class="owl-carousel owl-theme">
+                        <?php while($row_RAND = $result_RAND->fetch_assoc()) { ?>
                         <section class="col-12 p-2">
                             <div class="card h-100">
-                                <a href="#" class="warpper-card-img">
-                                    <img src="assets/images/blog/img1.jfif" class="card-img-top" alt="...">
+                                <a href="blog-detail.php?id=<?php echo $row_RAND['id']; ?>" class="warpper-card-img">
+                                    <img src="<?php echo $base_path_blog.$row_RAND['image'] ?>" class="card-img-top" alt="...">
                                 </a>
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title</p>
+                                    <h5 class="card-title"><?php echo $row_RAND['subject']; ?></h5>
+                                    <p class="card-text"><?php echo $row_RAND['sub_title'];?></p>
                                 </div>
                                 <div class="p-3">
-                                    <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
+                                    <a href="blog-detail.php?id=<?php echo $row_RAND['id']; ?>" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
                                 </div>
                             </div>
                         </section>
-
-                        <section class="col-12 p-2">
-                            <div class="card h-100">
-                                <a href="#" class="warpper-card-img">
-                                    <img src="assets/images/blog/img1.jfif" class="card-img-top" alt="...">
-                                </a>
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title</p>
-                                </div>
-                                <div class="p-3">
-                                    <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section class="col-12 p-2">
-                            <div class="card h-100">
-                                <a href="#" class="warpper-card-img">
-                                    <img src="assets/images/blog/img1.jfif" class="card-img-top" alt="...">
-                                </a>
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title</p>
-                                </div>
-                                <div class="p-3">
-                                    <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section class="col-12 p-2">
-                            <div class="card h-100">
-                                <a href="#" class="warpper-card-img">
-                                    <img src="assets/images/blog/img1.jfif" class="card-img-top" alt="...">
-                                </a>
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title</p>
-                                </div>
-                                <div class="p-3">
-                                    <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section class="col-12 p-2">
-                            <div class="card h-100">
-                                <a href="#" class="warpper-card-img">
-                                    <img src="assets/images/blog/img1.jfif" class="card-img-top" alt="...">
-                                </a>
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title</p>
-                                </div>
-                                <div class="p-3">
-                                    <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                                </div>
-                            </div>
-                        </section>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-12">
@@ -189,7 +132,7 @@
     <script>
         $(document).ready(function(){
             $('.owl-carousel').owlCarousel({
-                loop: true,
+                loop: false,
                 nav:false,
                 dot: true,
                 responsive:{

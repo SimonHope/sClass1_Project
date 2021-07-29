@@ -1,10 +1,11 @@
 <?php
-
     require_once('php/connect.php');
-
-    $sql = "SELECT * FROM articles";
-    $result = $conn->query($sql) or die($conn->error);
-    
+    $tag = isset($_GET['tag']) ? $_GET['tag'] : 'all';
+    $sql = "SELECT * FROM `articles` WHERE `tag` LIKE '%".$tag."%' AND `status` = 'true'";
+    $result = $conn->query($sql);
+    if (!$result) {
+        header('Location: blog.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -73,25 +74,36 @@
                 <div class="col-12 text-center">
                     <div class="btn-group-custom">
                         <a href="blog.php?tag=all">
-                            <button class="btn btn-primary active">ทั้งหมด</button>
+                            <button class="btn btn-primary <?php echo $tag == 'all' || $tag == '' ? 'active' : '' ?>">ทั้งหมด</button>
                         </a>
-                        <a href="blog.php?tag=FPS">
-                            <button class="btn btn-primary">FPS</button>
+                        <a href="blog.php?tag=fps">
+                            <button class="btn btn-primary <?php echo $tag == 'fps' ? 'active' : '' ?>">FPS</button>
                         </a>
-                        <button class="btn btn-primary">MMORPG</button>
-                        <button class="btn btn-primary">Platform</button>
-                        <button class="btn btn-primary">MOBA</button>
-                        <button class="btn btn-primary">Boardgame</button>
+                        <a href="blog.php?tag=mmorpg">
+                            <button class="btn btn-primary <?php echo $tag == 'mmorpg' ? 'active' : '' ?>">MMORPG</button>
+                        </a>
+                        <a href="blog.php?tag=platform">
+                            <button class="btn btn-primary <?php echo $tag == 'platform' ? 'active' : '' ?>">Platform</button>
+                        </a>
+                        <a href="blog.php?tag=moba">
+                            <button class="btn btn-primary <?php echo $tag == 'moba' ? 'active' : '' ?>">MOBA</button>
+                        </a>
+                        <a href="blog.php?tag=boardgame">
+                            <button class="btn btn-primary <?php echo $tag == 'boardgame' ? 'active' : '' ?> ">Boardgame</button>
+                        </a>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <?php while($row = $result->fetch_assoc()) { ?>
+                <?php 
+                    if ($result->num_rows) {
+                        while($row = $result->fetch_assoc()) {  
+                ?>
                 <section class="col-12 col-sm-6 col-md-4 p-2">
                     <div class="card h-100">
                         <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="warpper-card-img">
-                            <img src="<?php echo $row['image'] ?>" class="card-img-top" alt="...">
+                            <img src="<?php echo $base_path_blog.$row['image'] ?>" class="card-img-top" alt="gaming">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['subject'] ?></h5>
@@ -102,7 +114,18 @@
                         </div>
                     </div>
                 </section>
+                <?php 
+                        }
+                    }
+                    else{
+                ?>
+
+                <section class="col-12">
+                    <p class="text-center">ไม่มีข้อมูล</p>
+                </section>
+
                 <?php } ?>
+
             </div>
         </section>
 

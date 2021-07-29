@@ -1,3 +1,9 @@
+<?php
+    require_once('php/connect.php');
+    $sql = "SELECT * FROM `articles` WHERE `status` = 'true' ORDER BY RAND() LIMIT 6";
+    $result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,95 +113,22 @@
         <section class="container">
             <h1 class="border-short-bottom text-center">บทความ Blog</h1>
             <div class="row">
+                <?php while($row = $result->fetch_assoc()){ ?>
                 <section class="col-12 col-sm-6 col-md-4 p-2">
                     <div class="card h-100">
-                        <a href="#" class="warpper-card-img">
-                            <img src="assets/images/blog/img1.jfif" class="card-img-top" alt="...">
+                        <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="warpper-card-img">
+                            <img src="<?php echo $base_path_blog.$row['image'] ?>" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title"><?php echo $row['subject'] ?></h5>
+                            <p class="card-text"><?php echo $row['sub_title'] ?></p>
                         </div>
                         <div class="p-3">
-                            <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
+                            <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
                         </div>
                     </div>
                 </section>
-
-                <section class="col-12 col-sm-6 col-md-4 p-2">
-                    <div class="card h-100">
-                        <a href="#" class="warpper-card-img">
-                            <img src="assets/images/blog/img2.jfif" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="col-12 col-sm-6 col-md-4 p-2">
-                    <div class="card h-100">
-                        <a href="#" class="warpper-card-img">
-                            <img src="assets/images/blog/img3.jfif" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="col-12 col-sm-6 col-md-4 p-2">
-                    <div class="card h-100">
-                        <a href="#" class="warpper-card-img">
-                            <img src="assets/images/blog/img4.jfif" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="col-12 col-sm-6 col-md-4 p-2">
-                    <div class="card h-100">
-                        <a href="#" class="warpper-card-img">
-                            <img src="assets/images/blog/img5.jfif" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="col-12 col-sm-6 col-md-4 p-2">
-                    <div class="card h-100">
-                        <a href="#" class="warpper-card-img">
-                            <img src="assets/images/blog/img6.jfif" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </section>
+                <?php } ?>
             </div>
         </section>
 

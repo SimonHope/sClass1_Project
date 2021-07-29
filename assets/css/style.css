@@ -91,6 +91,10 @@ Colors
         width: 150px;
     }
 
+    .btn-group-custom a:hover{
+        text-decoration: none;
+    }
+
     .blog-content{
         padding: 50px 100px;
         box-shadow: 0px 0px 10px #a5a5a5;
