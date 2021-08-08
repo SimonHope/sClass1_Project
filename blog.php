@@ -17,37 +17,7 @@
     <title>Blog</title>
 
 <!-- COMMON TAGS -->
-    <meta charset="utf-8">
-    <!-- Search Engine -->
-    <meta name="description" content="อยากให้ทุกคนเข้าใจในเกมและเล่นเกมอย่างมีความสุข">
-    <meta name="title" content="SimonHope Studio">
-    <meta name="keywords" content="เกม, บอร์ดเกม, เล่นเกม">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="English">
-    <meta name="image" content="https://images.unsplash.com/10/wii.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80">
-    <!-- Schema.org for Google -->
-    <meta itemprop="name" content="SimonHope ส่งต่อเรื่องราวของเกม">
-    <meta itemprop="description" content="อยากให้ทุกคนเข้าใจในเกมและเล่นเกมอย่างมีความสุข">
-    <meta itemprop="image" content="https://images.unsplash.com/10/wii.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80">
-    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-    <meta name="og:title" content="SimonHope ส่งต่อเรื่องราวของเกม">
-    <meta name="og:description" content="อยากให้ทุกคนเข้าใจในเกมและเล่นเกมอย่างมีความสุข">
-    <meta name="og:image" content="https://images.unsplash.com/10/wii.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80">
-    <meta name="og:url" content="https://sclass1-project.web.app/blog.php">
-    <meta name="og:site_name" content="https://sclass1-project.web.app/blog.php">
-    <meta name="og:type" content="website">
-
-<!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/images/favicons/site.webmanifest">
-    <link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="assets/images/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="assets/images/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+    <?php include_once('includes/meta.php'); ?>
 
 <!-- CSS -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">

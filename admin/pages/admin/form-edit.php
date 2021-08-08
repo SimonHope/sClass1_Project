@@ -1,4 +1,10 @@
-<?php include_once('../authen.php') ?>
+<?php 
+  include_once('../authen.php');
+  $id = $_GET['id'];
+  $sql = "SELECT first_name, last_name, username, status FROM `admins` WHERE `id` = '".$id."'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,25 +72,28 @@
           <div class="card-body">
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" disabled class="form-control" id="username" placeholder="Username" value="Username">
+              <input type="text" disabled class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $row['username'] ?>" required>
             </div>
             <div class="form-group">
               <label for="firstName">FirstName</label>
-              <input type="text" class="form-control" id="firstName" placeholder="FirstName" value="FirstName">
+              <input type="text" class="form-control" name="first_name" id="firstName" placeholder="FirstName" value="<?php echo $row['first_name'] ?>" required>
             </div>
             <div class="form-group">
               <label for="lastName">LastName</label>
-              <input type="text" class="form-control" id="lastName" placeholder="LastName" value="LastName">
+              <input type="text" class="form-control" name="last_name" id="lastName" placeholder="LastName" value="<?php echo $row['last_name'] ?>" required>
             </div>
             <div class="form-group">
               <label>Select Permission</label>
-              <select class="form-control">
-                <option value="admin">Admin</option>
+              <select class="form-control" required name="status">
+                <option value="" disabled selected>Select Permission</option>
+                <option value="superadmin" <?php echo $row['status'] == 'superadmin' ? 'selected': '' ?>>Super Admin</option>
+                <option value="admin" <?php echo $row['status'] == 'admin' ? 'selected': '' ?>>Admin</option>
               </select>
             </div>
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
           </div>
           <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>    
