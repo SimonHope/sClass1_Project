@@ -13,8 +13,12 @@
         echo "Connect Error : ".$conn->connect_error; //แสดงผล error message
         exit(); //จบการทำงานทุกอย่าง (โปรแกรมจะปิดตัวลง)
     }
-    $base_path_blog = 'assets/images/blog/';
     //ถ้าไม่มี error ให้ปล่อยผ่านไม่ต้องแสดงอะไร
+    $base_path_blog = 'assets/images/blog/';
+
+    //ตั้งค่า timezone
+    date_default_timezone_set('Asia/Bangkok');
+    
     
     /*
 
