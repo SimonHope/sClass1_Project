@@ -1,4 +1,12 @@
-<?php include_once('../authen.php') ?>
+<?php 
+  include_once('../authen.php');
+
+  $sql = "SELECT * FROM articles";
+  $result = $conn->query($sql);
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,26 +79,27 @@
               <th>Image</th>
               <th>Subject</th>
               <th>Subtitle</th>
-              <th>Created</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Updated</th>
+              <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <?php for($id=1; $id <= 5; $id++) { ?>
+            <?php 
+            $num = 0;
+            while($row = $result->fetch_assoc()) { 
+                $num++;
+              ?>
               <tr>
-                <td><?php echo $id; ?></td>
-                <td><img class="img-fluid d-block mx-auto" src="https://images.unsplash.com/photo-1531026383433-6ed5a112afbc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c010c700aac502636ad0b579ce1274a4&auto=format&fit=crop&w=1350&q=80" width="150px" alt=""></td>
-                <td>Subject<?php echo $id; ?></td>
-                <td>Subtitle<?php echo $id; ?></td>
-                <td>1/12/2018</td>
+                <td><?php echo $num; ?></td>
+                <td><img class="img-fluid d-block mx-auto" src="../../../assets/images/blog/<?php echo $row['image'] ?>" width="150px" alt=""></td>
+                <td>Subject<?php echo $row['subject']; ?></td>
+                <td>Subtitle<?php echo $row['sub_title']; ?></td>
+                <td><?php echo date_format(new DateTime($row['updated_at']), "j F Y | H:i"); ?></td>
                 <td>
-                  <a href="form-edit.php?id=<?php echo $id; ?>" class="btn btn-sm btn-warning text-white">
+                  <a href="form-edit.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning text-white">
                     <i class="fas fa-edit"></i> edit
                   </a> 
-                </td>
-                <td>
-                  <a href="#" onclick="deleteItem(<?php echo $id; ?>);" class="btn btn-sm btn-danger">
+                  <a href="#" onclick="deleteItem(<?php echo $row['id']; ?>);" class="btn btn-sm btn-danger">
                     <i class="fas fa-trash-alt"></i> Delete
                   </a>
                 </td>
