@@ -1,4 +1,21 @@
-<?php include_once('../authen.php') ?>
+<?php 
+  include_once('../authen.php');
+
+  if (!isset($_GET['id'])) {
+    header('Location:index.php');
+  }
+
+  $sql = "SELECT * FROM `articles` WHERE `id` = '".$_GET['id']."' ";
+  $result = $conn->query($sql);
+
+  if (!$result->num_rows) {
+    header('Location:index.php');
+  }
+
+  $row = $result->fetch_assoc();
+  $arrTag = explode(',', $row['tag']);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +42,15 @@
   <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- Custom style -->
+  <link rel="stylesheet" href="../../dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
-  
+  <!-- bootstrap-toggle -->
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -61,21 +82,21 @@
     <section class="content">
       <div class="card card-primary">
         <div class="card-header">
-        <h3 class="card-title">Create Data</h3>
+        <h3 class="card-title">Edit Data</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="update.php" method="post">
+        <form action="update.php" method="post" enctype="multipart/form-data">
           <div class="card-body">
 
             <div class="form-group">
               <label for="subject">Subject</label>
-              <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+              <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" value="<?php echo $row['subject']; ?>" required>
             </div>
 
             <div class="form-group">
               <label for="sub_title">Sub title</label>
-              <input type="text" class="form-control" id="sub_title" name="sub_title" placeholder="Sub title">
+              <input type="text" class="form-control" id="sub_title" name="sub_title" placeholder="Sub title" value="<?php echo $row['sub_title'] ?>" required>
             </div>
 
             <div class="form-group">
@@ -84,15 +105,16 @@
                   <input type="file" class="custom-file-input" name="file" id="customFile">
                   <label class="custom-file-label" for="customFile">Choose file</label>
               </div>
-              <figure class="figure text-center d-none mt-2">
-                  <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
+              <figure class="figure text-center d-block mt-2">
+                  <input type="hidden" name="data_file" value="<?php echo $row['image']; ?>">
+                  <img id="imgUpload" src="../../../assets/images/blog/<?php echo $row['image']; ?>" class="figure-img img-fluid rounded" alt="">
               </figure>
             </div>
 
             <div class="card card-primary card-outline">
               <div class="card-header">
                 <h3 class="card-title">
-                  Create Contents
+                  Edit Contents
                 </h3>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool btn-sm"
@@ -105,25 +127,28 @@
               </div>
               <div class="card-body">
                 <div class="mb-3">
-                  <textarea id="detail" name="detail" style="width: 100%">This is my Contents </textarea>
+                  <textarea class="d-none" name="detail" id="detail" rows="10" cols="80"
+                    <?php echo str_replace('./', '../../../', $row['detail']); ?>
+                  </textarea>
                 </div>
               </div>
             </div>
-            
+
             <div class="form-group">
               <label>Select a Tags</label>
-              <select class="form-control select2" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
-                <option value="html">html</option>
-                <option value="css">css</option>
-                <option value="javascript">javascript</option>
-                <option value="php">php</option>
-                <option value="mysql">mysql</option>
+              <select class="form-control select2" name="tags[]" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
+                <option value="fps" <?php echo in_array('fps', $arrTag) ? 'selected' : ''; ?> >FPS</option>
+                <option value="mmorpg" <?php echo in_array('mmorpg', $arrTag) ? 'selected' : ''; ?> >MMORPG</option>
+                <option value="platform" <?php echo in_array('platform', $arrTag) ? 'selected' : ''; ?> >Platform</option>
+                <option value="moba" <?php echo in_array('moba', $arrTag) ? 'selected' : ''; ?> >MOBA</option>
+                <option value="boardgame" <?php echo in_array('boardgame', $arrTag) ? 'selected' : ''; ?> >boardgame</option>
               </select>
             </div>
-
+            <input type="checkbox" name="status" <?php echo $row['status'] == 'true' ? 'checked' : ''; ?> data-toggle="toggle" data-on="Active" data-off="block" data-onstyle="success" data-style="ios">
+            <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
           </div>
           <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>    
@@ -157,6 +182,8 @@
 <script src="../../plugins/ckeditor/ckeditor.js"></script>
 <!-- Select2 -->
 <script src="../../plugins/select2/select2.full.min.js"></script>
+<!-- bootstrap-toggle -->
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <script>
   $(function () {
@@ -170,29 +197,35 @@
     });
 
     $('.custom-file-input').on('change', function(){
-        var fileName = $(this).val().split('\\').pop()
-        $(this).siblings('.custom-file-label').html(fileName)
-        if (this.files[0]) {
-            var reader = new FileReader()
-            $('.figure').addClass('d-block')
-            reader.onload = function (e) {
-                $('#imgUpload').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(this.files[0])
+
+        var size = this.files[0].size / 1024 / 1024
+        console.log(size.toFixed(2))
+        if (size.toFixed(2) > 2) {
+          alert('too big pic, maximum is 2MB')
+        }
+        else{
+          var fileName = $(this).val().split('\\').pop()
+          $(this).siblings('.custom-file-label').html(fileName)
+          if (this.files[0]) {
+              var reader = new FileReader()
+              $('.figure').addClass('d-block')
+              reader.onload = function (e) {
+                  $('#imgUpload').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(this.files[0])
+          }
         }
     })
 
-    ClassicEditor
-      .create(document.querySelector('#detail'))
-      .then(function (editor) {
-        // The editor instance
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
-
     //Initialize Select2 Elements
     $('.select2').select2()
+
+    //CKEDITOR
+    CKEDITOR.replace( 'detail' ,{
+      filebrowserBrowseUrl : '../../plugins/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
+      filebrowserUploadUrl : '../../plugins/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
+      filebrowserImageBrowseUrl : '../../plugins/responsive_filemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr='
+    });
 
   });
   
