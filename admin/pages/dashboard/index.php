@@ -1,4 +1,16 @@
-<?php include_once('../authen.php') ?>
+<?php 
+  include_once('../authen.php');
+
+  $sql_art = "SELECT * FROM articles";
+  $result_art = $conn->query($sql_art);
+
+  $contact_count = "SELECT * FROM contacts";
+  $result_cont_count = $conn->query($contact_count);
+
+  $sql_cont = "SELECT * FROM contacts ORDER BY id DESC LIMIT 10";
+  $result_cont = $conn->query($sql_cont);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,26 +75,25 @@
           <div class="col-lg-6 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>10</h3>
+                <h3><?php echo $result_art->num_rows; ?></h3>
                 <p>New Articles</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="../articles" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-6 col-6">
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
-
+                <h3><?php echo $result_cont_count->num_rows; ?></h3>
                 <p>All Contacts</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="../contacts" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -110,14 +121,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php for ($i=1; $i < 9 ; $i++) { ?>
+                <?php
+                  $num = 0; 
+                  while ($row = $result_cont_count->fetch_assoc()) {
+                    $num++;
+                   ?>
                 <tr>
-                    <td><?php echo $i; ?></td>
-                    <td>Lorem, ipsum.</td>
-                    <td>088-888-8888</td>
-                    <td>Test@test</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ad maxime quas esse ipsa exercitationem praesentium hic numquam dignissimos quia?</td>
-                    <td>1/12/2018</td>
+                    <td><?php echo $num; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['phone']; ?></td>
+                    <td><?php echo $row['email']; ?>/td>
+                    <td><?php echo $row['detail']; ?></td>
+                    <td><?php echo $row['created_at']; ?></td>
                 </tr>
                 <?php } ?>
                 </tbody>

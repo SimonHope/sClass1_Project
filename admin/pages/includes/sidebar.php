@@ -70,6 +70,12 @@ $name = $array[$key + 1];
               <p>Contacts</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="../userlogs" class="nav-link <?php echo $name == 'userlogs' ? 'active': '' ?>">
+              <i class="fas fa-chalkboard-teacher nav-icon"></i>
+              <p>Userlogs <span class="badge badge-light" id="notiScore"></span></p>
+            </a>
+          </li>
           <li class="nav-header">Account Settings</li>
           <li class="nav-item">
             <a href="../../logout.php" class="nav-link">

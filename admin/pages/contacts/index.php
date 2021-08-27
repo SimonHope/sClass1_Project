@@ -1,4 +1,8 @@
-<?php include_once('../authen.php') ?>
+<?php 
+  include_once('../authen.php');
+  $sql = "SELECT * FROM `contacts`";
+  $result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,30 +76,30 @@
                     <th>Email</th>
                     <th>Message</th>
                     <th>Created</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php for ($i=1; $i < 50 ; $i++) { ?>
+                <?php
+                  $num = 0; 
+                  while ($row = $result->fetch_assoc()) {
+                    $num++;
+                   ?>
                 <tr>
-                    <td><?php echo $i; ?></td>
-                    <td>Lorem, ipsum.</td>
-                    <td>088-888-8888</td>
-                    <td>Test@test</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ad maxime quas esse ipsa exercitationem praesentium hic numquam dignissimos quia?</td>
-                    <td>1/12/2018</td>
+                    <td><?php echo $num; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['phone']; ?></td>
+                    <td><?php echo $row['email']; ?>/td>
+                    <td><?php echo $row['detail']; ?></td>
+                    <td><?php echo $row['created_at']; ?></td>
+                    <td>
+                      <a href="#" onclick="deleteItem(<?php echo $row['id']; ?>);" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash-alt"></i> Delete
+                      </a>
+                    </td>
                 </tr>
                 <?php } ?>
                 </tbody>
-                <tfoot>
-                <tr  class="text-center">
-                  <th>No.</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Message</th>
-                    <th>Created</th>
-                </tr>
-                </tfoot>
             </table>
         </div>
         <!-- /.card-body -->
@@ -153,6 +157,13 @@
       ]
     });
   });
+
+  function deleteItem (id) { 
+    if( confirm('Are you sure, you want to delete this item?') == true){
+      window.location=`delete.php?id=${id}`;
+      // window.location='delete.php?id='+id;
+    }
+  };
 </script>
 
 </body>

@@ -1,11 +1,7 @@
 <?php 
   include_once('../authen.php');
-
-  $sql = "SELECT * FROM articles";
+  $sql = "SELECT * FROM articles ORDER BY id DESC";
   $result = $conn->query($sql);
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,6 +31,9 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
+  <!-- bootstrap-toggle -->
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -79,6 +78,7 @@
               <th>Image</th>
               <th>Subject</th>
               <th>Subtitle</th>
+              <th>Status</th>
               <th>Updated</th>
               <th>Action</th>
             </tr>
@@ -94,6 +94,7 @@
                 <td><img class="img-fluid d-block mx-auto" src="../../../assets/images/blog/<?php echo $row['image'] ?>" width="150px" alt=""></td>
                 <td>Subject<?php echo $row['subject']; ?></td>
                 <td>Subtitle<?php echo $row['sub_title']; ?></td>
+                <td><input class="toggle-event" data-id="<?php echo $row['id']; ?>" type="checkbox" name="status" <?php echo $row['status'] == 'true' ? 'checked': ''; ?> data-toggle="toggle" data-on="Active" data-off="Block" data-onstyle="success" data-style="ios"></td>
                 <td><?php echo date_format(new DateTime($row['updated_at']), "j F Y | H:i"); ?></td>
                 <td>
                   <a href="form-edit.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning text-white">
@@ -138,6 +139,8 @@
 <!-- DataTables -->
 <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- bootstrap-toggle -->
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <script>
   $(function () {
@@ -157,6 +160,25 @@
       // window.location='delete.php?id='+id;
     }
   };
+
+  $('.toggle-event').change(function(){
+    $.ajax({
+      method: "POST",
+      url: "active.php",
+      data: { 
+        id: $(this).data('id'), 
+        value: $(this).is(':checked') 
+      }
+    })
+    .done(function( resp, status, xhr) {
+      setTimeout(() => {
+        alert(status)
+      }, 300);
+    })
+    .fail(function ( xhr, status, error) { 
+      alert(status +' '+ error)
+    })
+  })
 
 </script>
 
