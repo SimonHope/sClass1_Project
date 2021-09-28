@@ -5,7 +5,6 @@
 
     //เชื่อมต่อ Database
     $conn = new mysqli('localhost','root','','blog');
-    //$conn = new mysqli('localhost','cjfitnes_blog','ImvVqP2LzR','cjfitnes_blog');
     //ตั้งค่าภาษาให้รองรับภาษาไทย
     $conn->set_charset('utf8');
 
