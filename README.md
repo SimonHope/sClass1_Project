@@ -35,10 +35,6 @@ Just clone my project and host on your local server.
 
 Explain what these tests test and why
 
-```
-Give an example
-```
-
 ## 🎈 Usage <a name="usage"></a>
 
 - CRUD articles
